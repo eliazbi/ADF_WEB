@@ -1,0 +1,126 @@
+{
+	"name": "Parquet2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BLOB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "health.parquet",
+				"container": "cn3"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "average_covered_charges",
+				"type": "UTF8"
+			},
+			{
+				"name": "average_total_payments",
+				"type": "UTF8"
+			},
+			{
+				"name": "total_discharges",
+				"type": "UTF8"
+			},
+			{
+				"name": "PERCENT_Bachelor's_or_Higher",
+				"type": "UTF8"
+			},
+			{
+				"name": "percent_hs_grad_or_higher",
+				"type": "UTF8"
+			},
+			{
+				"name": "total_payments",
+				"type": "UTF8"
+			},
+			{
+				"name": "percent_reimbursement",
+				"type": "UTF8"
+			},
+			{
+				"name": "total_covered_charges",
+				"type": "UTF8"
+			},
+			{
+				"name": "referral_region_provider_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "reimbursement_percentage",
+				"type": "UTF8"
+			},
+			{
+				"name": "drg_definition",
+				"type": "UTF8"
+			},
+			{
+				"name": "referral_region",
+				"type": "UTF8"
+			},
+			{
+				"name": "income_per_capita",
+				"type": "UTF8"
+			},
+			{
+				"name": "median_earnings_bachelors",
+				"type": "UTF8"
+			},
+			{
+				"name": "median_earnings_graduate",
+				"type": "UTF8"
+			},
+			{
+				"name": "median_earnings_hs_grad",
+				"type": "UTF8"
+			},
+			{
+				"name": "median_earnings_less_than_hs",
+				"type": "UTF8"
+			},
+			{
+				"name": "median_family_income",
+				"type": "UTF8"
+			},
+			{
+				"name": "number_of_records",
+				"type": "UTF8"
+			},
+			{
+				"name": "pop_25_over",
+				"type": "UTF8"
+			},
+			{
+				"name": "provider_city",
+				"type": "UTF8"
+			},
+			{
+				"name": "provider_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "provider_name",
+				"type": "UTF8"
+			},
+			{
+				"name": "provider_state",
+				"type": "UTF8"
+			},
+			{
+				"name": "provider_street_address",
+				"type": "UTF8"
+			},
+			{
+				"name": "provider_zip_code",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,74 @@
+{
+	"name": "AzureSqlTable10",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SALESDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OrderDate",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerID",
+				"type": "varchar"
+			},
+			{
+				"name": "Freight",
+				"type": "varchar"
+			},
+			{
+				"name": "OrderID",
+				"type": "varchar"
+			},
+			{
+				"name": "EmployeeID",
+				"type": "varchar"
+			},
+			{
+				"name": "RequiredDate",
+				"type": "varchar"
+			},
+			{
+				"name": "ShippedDate",
+				"type": "varchar"
+			},
+			{
+				"name": "ShipVia",
+				"type": "varchar"
+			},
+			{
+				"name": "ShipName",
+				"type": "varchar"
+			},
+			{
+				"name": "ShipAddress",
+				"type": "varchar"
+			},
+			{
+				"name": "ShipCity",
+				"type": "varchar"
+			},
+			{
+				"name": "ShipRegion",
+				"type": "varchar"
+			},
+			{
+				"name": "ShipPostalCode",
+				"type": "varchar"
+			},
+			{
+				"name": "ShipCountry",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Group1Sales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

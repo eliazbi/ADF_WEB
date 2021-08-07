@@ -1,0 +1,13 @@
+{
+	"name": "AzureSqlTable40",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SALESDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "Xml2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "NewBlobLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "BOOKS.XML",
+				"container": "cn1"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

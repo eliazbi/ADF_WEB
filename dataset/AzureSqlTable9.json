@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlTable9",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_OLAP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "",
+			"table": "ZTEST1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

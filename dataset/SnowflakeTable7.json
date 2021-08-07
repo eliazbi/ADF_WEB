@@ -1,0 +1,17 @@
+{
+	"name": "SnowflakeTable7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake_DWB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "PUBLIC",
+			"table": "Group1Test"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

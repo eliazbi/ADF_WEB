@@ -1,0 +1,64 @@
+{
+	"name": "SCDTYPE2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable44",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable42",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable43",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable45",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				},
+				{
+					"name": "DerivedColumn2"
+				},
+				{
+					"name": "Exists1"
+				},
+				{
+					"name": "SetoActive"
+				},
+				{
+					"name": "Exists2"
+				},
+				{
+					"name": "DerivedColumn3"
+				},
+				{
+					"name": "AlterRow1"
+				}
+			],
+			"script": "source(output(\n\t\tEmployeeid as integer,\n\t\tName as string,\n\t\tDEPT as string,\n\t\tSTARTDate as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource(output(\n\t\tEmployeeid as integer,\n\t\tName as string,\n\t\tDEPT as string,\n\t\tACTIVE as integer,\n\t\tSTARTDate as date,\n\t\tENDDATEDate as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source2\nsource1 derive(HASHKEY_INPUT = md5(Name,DEPT)) ~> DerivedColumn1\nsource2 derive(Hash_Tablekey = md5(Name,DEPT)) ~> DerivedColumn2\nDerivedColumn1, DerivedColumn2 exists(HASHKEY_INPUT == Hash_Tablekey,\n\tnegate:true,\n\tbroadcast: 'auto')~> Exists1\nExists1 derive(ACTIVE = 1,\n\t\tENDDATEDate = toDate('9999-12-31')) ~> SetoActive\nDerivedColumn2, SetoActive exists(source2@Employeeid == source1@Employeeid\n\t&& source2@Name == source1@Name,\n\tnegate:false,\n\tbroadcast: 'auto')~> Exists2\nExists2 derive(ENDDATEDate = toDate(currentUTC()),\n\t\tACTIVE = 0) ~> DerivedColumn3\nDerivedColumn3 alterRow(updateIf(true())) ~> AlterRow1\nSetoActive sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEmployeeid as integer,\n\t\tName as string,\n\t\tDEPT as string,\n\t\tACTIVE as integer,\n\t\tSTARTDate as date,\n\t\tENDDATEDate as date\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tEmployeeid,\n\t\tName,\n\t\tDEPT,\n\t\tACTIVE,\n\t\tSTARTDate,\n\t\tENDDATEDate\n\t)) ~> sink1\nAlterRow1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEmployeeid as integer,\n\t\tName as string,\n\t\tDEPT as string,\n\t\tACTIVE as integer,\n\t\tSTARTDate as date,\n\t\tENDDATEDate as date\n\t),\n\tdeletable:false,\n\tinsertable:false,\n\tupdateable:true,\n\tupsertable:false,\n\tkeys:['Employeeid','Name','DEPT'],\n\tskipKeyWrites:true,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\tEmployeeid,\n\t\tName,\n\t\tDEPT,\n\t\tACTIVE,\n\t\tSTARTDate,\n\t\tENDDATEDate\n\t)) ~> sink2"
+		}
+	}
+}

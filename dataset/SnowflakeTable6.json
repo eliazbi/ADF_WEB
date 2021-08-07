@@ -1,0 +1,17 @@
+{
+	"name": "SnowflakeTable6",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake_DWB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "PUBLIC",
+			"table": "GROUP3SALES"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

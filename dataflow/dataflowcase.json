@@ -1,0 +1,32 @@
+{
+	"name": "dataflowcase",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable5",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable6",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(output(\n\t\tOrderID as integer,\n\t\tCustomerID as string,\n\t\tEmployeeID as integer,\n\t\tOrderDate as timestamp,\n\t\tRequiredDate as timestamp,\n\t\tShippedDate as timestamp,\n\t\tShipVia as integer,\n\t\tFreight as decimal(19,4),\n\t\tShipName as string,\n\t\tShipAddress as string,\n\t\tShipCity as string,\n\t\tShipRegion as string,\n\t\tShipPostalCode as string,\n\t\tShipCountry as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource1 derive(EmpGroup = case(\r\n\r\n    EmployeeID>=1 && EmployeeID<=3,'Group1',\r\n    EmployeeID>=4 && EmployeeID<=6,'Group2',\r\n\r\n    'Group3'\r\n\r\n)) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "SnowflakeTable5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake_DWB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "PUBLIC",
+			"table": "Group2sales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

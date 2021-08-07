@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlTable21",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_OLAP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "jsontable1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

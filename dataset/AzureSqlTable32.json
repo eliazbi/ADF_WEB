@@ -1,0 +1,39 @@
+{
+	"name": "AzureSqlTable32",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_OLAP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OrderID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerID",
+				"type": "nchar"
+			},
+			{
+				"name": "Freight",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "OrderDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Orders_Tar"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

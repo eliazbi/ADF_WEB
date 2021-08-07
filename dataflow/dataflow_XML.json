@@ -1,0 +1,32 @@
+{
+	"name": "dataflow_XML",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Xml2",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable46",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Flatten1"
+				}
+			],
+			"script": "source(output(\n\t\tRoot as ({@xmlns} as string, {@xmlns:xsi} as string, {@xsi:schemaLocation} as string, catalog as (book as ({@id} as string, author as string, genre as string, price as double, publish_date as date, title as string)[]))\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\trowUrlColumn: 'test',\n\tvalidationMode: 'none',\n\tnamespaces: false) ~> source1\nsource1 foldDown(unroll(Root.catalog.book),\n\tmapColumn(\n\t\t{@xmlns} = Root.{@xmlns},\n\t\t{@xmlns:xsi} = Root.{@xmlns:xsi},\n\t\t{@xsi:schemaLocation} = Root.{@xsi:schemaLocation},\n\t\t{@id} = Root.catalog.book.{@id},\n\t\tauthor = Root.catalog.book.author,\n\t\tgenre = Root.catalog.book.genre,\n\t\tprice = Root.catalog.book.price,\n\t\tpublish_date = Root.catalog.book.publish_date,\n\t\ttitle = Root.catalog.book.title\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Flatten1\nFlatten1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError',\n\tmapColumn(\n\t\t{@xmlns},\n\t\t{@xmlns:xsi},\n\t\t{@xsi:schemaLocation},\n\t\t{@id},\n\t\tauthor,\n\t\tgenre,\n\t\tprice,\n\t\tpublish_date,\n\t\ttitle\n\t)) ~> sink1"
+		}
+	}
+}

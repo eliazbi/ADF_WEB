@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlTable27",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SALESDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "HealthPar"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

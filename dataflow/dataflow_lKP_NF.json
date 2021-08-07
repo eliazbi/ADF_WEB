@@ -1,0 +1,42 @@
+{
+	"name": "dataflow_lKP_NF",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable16",
+						"type": "DatasetReference"
+					},
+					"name": "Orders"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable17",
+						"type": "DatasetReference"
+					},
+					"name": "EmpLkpTable"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable18",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Lookup1"
+				},
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\tOrderID as integer,\n\t\tCustomerID as string,\n\t\tEmployeeID as integer,\n\t\tOrderDate as timestamp,\n\t\tRequiredDate as timestamp,\n\t\tShippedDate as timestamp,\n\t\tShipVia as integer,\n\t\tFreight as decimal(19,4),\n\t\tShipName as string,\n\t\tShipAddress as string,\n\t\tShipCity as string,\n\t\tShipRegion as string,\n\t\tShipPostalCode as string,\n\t\tShipCountry as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> Orders\nsource(output(\n\t\tEmployeeID as integer,\n\t\tLastName as string,\n\t\tFirstName as string,\n\t\tTitle as string,\n\t\tTitleOfCourtesy as string,\n\t\tBirthDate as timestamp,\n\t\tHireDate as timestamp,\n\t\tAddress as string,\n\t\tCity as string,\n\t\tRegion as string,\n\t\tPostalCode as string,\n\t\tCountry as string,\n\t\tHomePhone as string,\n\t\tExtension as string,\n\t\tNotes as string,\n\t\tReportsTo as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> EmpLkpTable\nOrders, EmpLkpTable lookup(Orders@EmployeeID == EmpLkpTable@EmployeeID,\n\tmultiple: false,\n\tpickup: 'last',\n\tasc(EmpLkpTable@EmployeeID, true),\n\tbroadcast: 'auto')~> Lookup1\nLookup1 select(mapColumn(\n\t\tOrderID,\n\t\tCustomerID,\n\t\tEmployeeID = Orders@EmployeeID,\n\t\tOrderDate,\n\t\tRequiredDate,\n\t\tShippedDate,\n\t\tShipVia,\n\t\tFreight,\n\t\tShipName,\n\t\tShipAddress,\n\t\tShipCity,\n\t\tShipRegion,\n\t\tShipPostalCode,\n\t\tShipCountry,\n\t\tLastName,\n\t\tFirstName\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+		}
+	}
+}

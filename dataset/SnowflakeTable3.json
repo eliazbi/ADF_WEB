@@ -1,0 +1,17 @@
+{
+	"name": "SnowflakeTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake_DWB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Public",
+			"table": "SaleitemProductFact"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

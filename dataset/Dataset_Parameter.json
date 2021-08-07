@@ -1,0 +1,33 @@
+{
+	"name": "Dataset_Parameter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Parameter",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Db_Name": {
+					"value": "@dataset().dbname",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			},
+			"dbname": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
