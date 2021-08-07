@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "el109adf1"
+		},
+		"ABST1_connectionString": {
+			"value": ""
+		},
+		"AmazonS31_secretAccessKey": {
+			"value": ""
+		},
+		"AzureBlobStorage_New_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"CosmosDbLS_connectionString": {
+			"value": ""
+		},
+		"LS_BLOB_connectionString": {
+			"value": ""
+		},
+		"LS_GEN2_accountKey": {
+			"value": ""
+		},
+		"LS_OLAP_connectionString": {
+			"value": ""
+		},
+		"LS_Parameter_connectionString": {
+			"value": ""
+		},
+		"LS_SALESDB_connectionString": {
+			"value": ""
+		},
+		"NewBlobLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerOnPrem_connectionString": {
+			"value": ""
+		},
+		"SqlServerOnPrem_password": {
+			"value": ""
+		},
+		"AmazonS31_properties_typeProperties_accessKeyId": {
+			"value": "AKIAYTSFLVZ5XDJ3SJVA"
+		},
+		"AzureBlobStorage_SASURI_sasUri": {
+			"value": ""
+		},
+		"LS_GEN2_properties_typeProperties_url": {
+			"value": "https://el108dwgen2.dfs.core.windows.net"
+		},
+		"Snowflake1_connectionString": {
+			"value": ""
+		},
+		"Snowflake_DWB_connectionString": {
+			"value": ""
+		},
+		"SqlServerOnPrem_properties_typeProperties_userName": {
+			"value": "BBSAP\\eshaik"
+		}
+	}
+}
