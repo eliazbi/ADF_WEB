@@ -13,6 +13,32 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SALESDB",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Tablename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"table": {
+						"value": "@dataset().Tablename",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable8')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -863,137 +889,6 @@
 					},
 					{
 						"name": "STARTDATE",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BLOB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Saleorder.txt",
-						"container": "cn1"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "SalesOrderID",
-						"type": "String"
-					},
-					{
-						"name": "RevisionNumber",
-						"type": "String"
-					},
-					{
-						"name": "OrderDate",
-						"type": "String"
-					},
-					{
-						"name": "DueDate",
-						"type": "String"
-					},
-					{
-						"name": "ShipDate",
-						"type": "String"
-					},
-					{
-						"name": "Status",
-						"type": "String"
-					},
-					{
-						"name": "OnlineOrderFlag",
-						"type": "String"
-					},
-					{
-						"name": "SalesOrderNumber",
-						"type": "String"
-					},
-					{
-						"name": "PurchaseOrderNumber",
-						"type": "String"
-					},
-					{
-						"name": "AccountNumber",
-						"type": "String"
-					},
-					{
-						"name": "CustomerID",
-						"type": "String"
-					},
-					{
-						"name": "SalesPersonID",
-						"type": "String"
-					},
-					{
-						"name": "TerritoryID",
-						"type": "String"
-					},
-					{
-						"name": "BillToAddressID",
-						"type": "String"
-					},
-					{
-						"name": "ShipToAddressID",
-						"type": "String"
-					},
-					{
-						"name": "ShipMethodID",
-						"type": "String"
-					},
-					{
-						"name": "CreditCardID",
-						"type": "String"
-					},
-					{
-						"name": "CreditCardApprovalCode",
-						"type": "String"
-					},
-					{
-						"name": "CurrencyRateID",
-						"type": "String"
-					},
-					{
-						"name": "SubTotal",
-						"type": "String"
-					},
-					{
-						"name": "TaxAmt",
-						"type": "String"
-					},
-					{
-						"name": "Freight",
-						"type": "String"
-					},
-					{
-						"name": "TotalDue",
-						"type": "String"
-					},
-					{
-						"name": "Comment",
-						"type": "String"
-					},
-					{
-						"name": "rowguid",
-						"type": "String"
-					},
-					{
-						"name": "ModifiedDate",
 						"type": "String"
 					}
 				]

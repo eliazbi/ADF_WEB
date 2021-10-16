@@ -59,6 +59,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerOnPrem'"
 		},
+		"AzureSqlDatabase2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
+		},
 		"AmazonS31_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAYTSFLVZ5XDJ3SJVA"
@@ -142,6 +146,9 @@
 					},
 					"NewBlobLS_connectionString": {
 						"value": "[parameters('NewBlobLS_connectionString')]"
+					},
+					"AzureSqlDatabase2_connectionString": {
+						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
 					},
 					"AmazonS31_properties_typeProperties_accessKeyId": {
 						"value": "[parameters('AmazonS31_properties_typeProperties_accessKeyId')]"

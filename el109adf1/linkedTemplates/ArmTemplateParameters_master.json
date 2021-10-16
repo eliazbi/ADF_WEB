@@ -44,6 +44,9 @@
 		"SqlServerOnPrem_password": {
 			"value": ""
 		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
 		"AmazonS31_properties_typeProperties_accessKeyId": {
 			"value": "AKIAYTSFLVZ5XDJ3SJVA"
 		},
