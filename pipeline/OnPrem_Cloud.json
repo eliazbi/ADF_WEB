@@ -21,9 +21,13 @@
 						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"tableOption": "autoCreate",
-						"disableMetricsCollection": false
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
 					},
 					"enableStaging": false,
 					"translator": {
@@ -209,7 +213,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable51",
+						"referenceName": "Parquet9",
 						"type": "DatasetReference"
 					}
 				]
